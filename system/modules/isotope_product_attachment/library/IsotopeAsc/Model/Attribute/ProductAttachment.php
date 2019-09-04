@@ -50,6 +50,8 @@ class ProductAttachment extends Attribute
     public function generate(IsotopeProduct $objProduct, array $arrOptions = array())
     {
 		
+		return "PLACEHOLDER!";
+		
         $objContentModel = new \ContentModel();
         $objContentModel->type = 'downloads';
         $objContentModel->multiSRC = $this->getValue($objProduct);
