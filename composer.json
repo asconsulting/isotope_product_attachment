@@ -1,0 +1,34 @@
+{
+    "name":"asconsulting/isotope_product_attachment",
+    "description":"Product attribute that allows you to attach file(s) to a isotope product.",
+    "homepage": "https://andrewstevens.consulting",
+    "keywords":["contao", "isotope", "attachment", "file", "product"],
+    "type":"contao-module",
+    "license":"LGPL-3.0-or-later",
+    "authors":[
+        {
+            "name":"Andrew Stevens",
+            "homepage":"https://andrewstevens.consulting"
+        }
+    ],
+    "require":{
+        "php": "~5.4 || ~7.0",
+        "contao/core-bundle": "^3.5.2 || ~4.4",
+        "contao-community-alliance/composer-plugin": "~2.4 || ~3.0",
+		"isotope/isotope-core": ">=2.0"
+    },
+    "require-dev": {
+        "contao/manager-plugin": "^2.0"
+    },
+    "conflict": {
+        "asconsulting/isotope_product_attachment": "*"
+    },
+    "extra": {
+        "contao": {
+            "sources": {
+                "system/modules/isotope_product_attachment": "system/modules/isotope_product_attachment"
+            }
+        }
+    },
+    "minimum-stability": "dev"
+}
