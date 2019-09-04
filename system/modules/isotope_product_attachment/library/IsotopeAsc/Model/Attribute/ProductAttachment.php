@@ -49,38 +49,15 @@ class ProductAttachment extends Attribute
      */
     public function generate(IsotopeProduct $objProduct, array $arrOptions = array())
     {
-        $strPoster = null;
-        $arrFiles = deserialize($objProduct->{$this->field_name}, true);
 		
-		die($arrFiles);
-		
-        // Return if there are no files
-        if (empty($arrFiles) || !\is_array($arrFiles)) {
-            return '';
-        }
-
-        // Get the file entries from the database
-        $objFiles = \FilesModel::findMultipleByIds($arrFiles);
-
-        if (null === $objFiles) {
-            return '';
-        }
-
-        // Find poster
-        while ($objFiles->next()) {
-            if (\in_array($objFiles->extension, trimsplit(',', $GLOBALS['TL_CONFIG']['validImageTypes']))) {
-                $strPoster = $objFiles->uuid;
-                $arrFiles = array_diff($arrFiles, array($objFiles->uuid));
-            }
-        }
-
-
         $objContentModel = new \ContentModel();
         $objContentModel->type = 'downloads';
+        $objContentModel->multiSRC = $this->getValue($objProduct);
+        $objContentModel->sortBy = $this->sortBy;
         $objContentModel->cssID = serialize(array('', $this->field_name));
-        $objContentModel->objFiles = $objFiles;
 
         $objElement = new \ContentDownloads($objContentModel);
         return $objElement->generate();
+		
     }
 }
