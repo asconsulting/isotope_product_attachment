@@ -51,7 +51,9 @@ class ProductAttachment extends Attribute
     {
         $strPoster = null;
         $arrFiles = deserialize($objProduct->{$this->field_name}, true);
-
+		
+		die($arrFiles);
+		
         // Return if there are no files
         if (empty($arrFiles) || !\is_array($arrFiles)) {
             return '';
@@ -71,8 +73,7 @@ class ProductAttachment extends Attribute
                 $arrFiles = array_diff($arrFiles, array($objFiles->uuid));
             }
         }
-		
-		die($objFiles);
+
 
         $objContentModel = new \ContentModel();
         $objContentModel->type = 'downloads';
