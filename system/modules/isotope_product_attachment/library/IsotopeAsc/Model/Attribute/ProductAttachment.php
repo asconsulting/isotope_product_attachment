@@ -71,6 +71,8 @@ class ProductAttachment extends Attribute
                 $arrFiles = array_diff($arrFiles, array($objFiles->uuid));
             }
         }
+		
+		die($objFiles);
 
         $objContentModel = new \ContentModel();
         $objContentModel->type = 'downloads';
