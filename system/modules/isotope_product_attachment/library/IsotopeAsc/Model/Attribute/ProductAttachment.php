@@ -17,12 +17,10 @@ use Isotope\Interfaces\IsotopeProduct;
 use Isotope\Model\Attribute;
 
 /**
- * Attribute to provide an audio/video player in the product details
+ * Attribute to provide an file attachment in the product details
  *
- * @copyright  Isotope eCommerce Workgroup 2009-2014
- * @author     Christoph Wiechert <cw@4wardmedia.de>
  */
-class Media extends Attribute
+class ProductAttachment extends Attribute
 {
     /**
      * @inheritdoc
@@ -75,20 +73,11 @@ class Media extends Attribute
         }
 
         $objContentModel = new \ContentModel();
-        $objContentModel->type = 'media';
+        $objContentModel->type = 'downloads';
         $objContentModel->cssID = serialize(array('', $this->field_name));
-        $objContentModel->playerSRC = serialize($arrFiles);
-        $objContentModel->posterSRC = $strPoster;
+        $objContentModel->objFiles = $objFiles;
 
-        if ($arrOptions['autoplay']) {
-            $objContentModel->autoplay = '1';
-        }
-
-        if ($arrOptions['width'] || $arrOptions['height']) {
-            $objContentModel->playerSize = serialize(array($arrOptions['width'], $arrOptions['height']));
-        }
-
-        $objElement = new \ContentMedia($objContentModel);
+        $objElement = new \ContentDownloads($objContentModel);
         return $objElement->generate();
     }
 }
