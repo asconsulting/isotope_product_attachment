@@ -3,18 +3,19 @@
 /**
  * Isotope Product Attachment
  *
- * Copyright (C) 2019 Andrew Stevens Consulting
+ * Copyright (C) 2019-2022 Andrew Stevens Consulting
  *
  * @package    asconsulting/isotope_product_attachment
  * @link       https://andrewstevens.consulting
  */
- 
 
 
-namespace IsotopeAsc\Model\Attribute;
+
+namespace ProductAttachment\Model\Attribute;
 
 use Isotope\Interfaces\IsotopeProduct;
 use Isotope\Model\Attribute;
+
 
 /**
  * Attribute to provide an file attachment in the product details
@@ -36,6 +37,7 @@ class ProductAttachment extends Attribute
         $arrData['fields'][$this->field_name]['eval']['filesOnly'] = true;
     }
 
+
     /**
      * @inheritdoc
      */
@@ -49,7 +51,7 @@ class ProductAttachment extends Attribute
      */
     public function generate(IsotopeProduct $objProduct, array $arrOptions = array())
     {
-		
+
         $objContentModel = new \ContentModel();
         $objContentModel->type = 'downloads';
         $objContentModel->multiSRC = $this->getValue($objProduct);
@@ -58,6 +60,6 @@ class ProductAttachment extends Attribute
 
         $objElement = new \ContentDownloads($objContentModel);
         return $objElement->generate();
-		
+
     }
 }
