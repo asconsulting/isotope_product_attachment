@@ -51,7 +51,6 @@ class ProductAttachment extends Attribute
      */
     public function generate(IsotopeProduct $objProduct, array $arrOptions = array())
     {
-
         $objContentModel = new \ContentModel();
         $objContentModel->type = 'downloads';
         $objContentModel->multiSRC = $this->getValue($objProduct);
@@ -60,6 +59,6 @@ class ProductAttachment extends Attribute
 
         $objElement = new \ContentDownloads($objContentModel);
         return $objElement->generate();
-
     }
+
 }
